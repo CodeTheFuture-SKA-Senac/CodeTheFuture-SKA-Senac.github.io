@@ -1,0 +1,16 @@
+<div class="terminal-container">
+    <div class="status-bar">
+        {{ status }}
+    </div>
+    <div class="terminal-div">
+        <div class="item-infos"></div>
+        <div class="production-infos"></div>
+    </div>
+    <div class="action-buttons-div">
+        <button mat-button class="action-buttons stop-button">{{ "Parada" }}</button>
+        <button mat-button class="action-buttons production-button" (click)="openDialog()">{{ "Produção" }}</button>
+    </div>
+    <div>
+        <div class="ic-add-circle icon-small"></div>
+    </div>
+</div>

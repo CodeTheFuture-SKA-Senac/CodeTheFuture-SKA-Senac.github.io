@@ -1,0 +1,57 @@
+.terminal-container {
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr 0.3fr;
+    height: 100vh;
+    width: 100vw;
+}
+
+.status-bar {
+    background-color: red;
+}
+
+.terminal-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    width: 100%;
+}
+
+.item-infos {
+    background-color: rgba(255, 192, 203, 0.356);
+}
+
+.production-infos {
+    background-color: rgba(0, 128, 0, 0.372);
+}
+
+
+// Action Buttons
+.action-buttons-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.action-buttons {
+    width: 49%;
+    height: 97%;
+
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.stop-button {
+    background-color: var(--color-error-dark);
+    border-color: var(--color-error);
+}
+
+.production-button {
+    background-color: var(--color-success-dark);
+    border-color: var(--color-success);
+}
