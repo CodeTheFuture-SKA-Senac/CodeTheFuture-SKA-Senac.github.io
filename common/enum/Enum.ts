@@ -1,0 +1,15 @@
+export enum ProductionStatus_e {
+    InProduction = 'Em produção',
+    WaitingProduction = 'Aguardando produção',
+    LunchStop = 'Parada - Almoço',
+    TrainingStop = 'Parada - Treinamento',
+    PowerOutageStop = 'Parada - Queda de energia',
+    OperatorChangeStop = 'Parada - Troca de operador',
+    MaintenanceStop = 'Parada - Manutenção',
+}
+
+export enum ProductionStatusColor_e {
+    InProduction = 'var(--color-success)',
+    WaitingProduction = 'var(--color-dark-gray-200)',
+    Stop = 'var(--color-error)'
+}

@@ -1,29 +1,64 @@
-.terminal-container {
-    display: grid;
-    grid-template-rows: 1fr 5fr 1fr 0.3fr;
-    height: 100vh;
-    width: 100vw;
+// Status Bar Layout
+.status-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1%;
+
+    font-size: 2em;
+    font-weight: bold;
 }
 
-.status-bar {
-    background-color: red;
+// Terminal Layout
+.terminal-container {
+    height: 100dvh;
+    width: 100dvw;
+
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr 0.3fr;
 }
 
 .terminal-div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     height: 100%;
     width: 100%;
+
+    display: grid;
+    grid-template-columns: 1.01fr 0.01fr 1.3fr;
+
+    color: var(--color-text);
 }
 
 .item-infos {
-    background-color: rgba(255, 192, 203, 0.356);
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr 4fr;
 }
 
-.production-infos {
-    background-color: rgba(0, 128, 0, 0.372);
+.title-style {
+    background-color: red;
+    width: 90%;
+    height: 60%;
+
+    border-radius: 5px;
+    border: 2px solid;
+
+    font-size: 1.5em;
+    font-weight: bold;
+
+    background-color: var(--color-dark-blue-900);
+    border-color: var(--color-dark-blue-800);
 }
 
+// .item-content {
+//     // background-color: transparent;
+// }
+
+.divider {
+    border-left: 2px solid var(--color-light-gray-300);
+    height: 80%;
+}
 
 // Action Buttons
 .action-buttons-div {
@@ -31,16 +66,17 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 1vw;
+    gap: 1%;
 
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 1.5em;
     color: var(--color-text);
 }
 
 .action-buttons {
     width: 49%;
-    height: 97%;
+    height: 92%;
 
     border-radius: 5px;
     border: 2px solid;
@@ -54,4 +90,36 @@
 .production-button {
     background-color: var(--color-success-dark);
     border-color: var(--color-success);
+}
+
+// Footer
+.footer-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-dark-blue-700);
+}
+
+// Alignment
+.center-align {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-align {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    padding-left: 1%;
+}
+
+.right-align {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    padding-right: 1%;
 }

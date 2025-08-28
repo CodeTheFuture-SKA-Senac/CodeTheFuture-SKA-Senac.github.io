@@ -1,7 +1,15 @@
-<h2 mat-dialog-title>Dialog Title</h2>
-<div mat-dialog-content>
-  <p>Este é um diálogo simples em Angular Material.</p>
+<h2>Selecionar ordem de produção </h2>
+
+<div class="list-options">
+  <div *ngFor="let order of productionOrders" class="options" [class.selected]="order.key === selectedOrder?.key" (click)="setSelectedOrder(order)">
+    <div [class]="order.icon"></div>
+    <div class="options-description">
+      <div class="order-label">{{ order.label }}</div>
+      <div class="order-description">{{ order.description }}</div>
+    </div>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+
+<div class="footer">
+  <button mat-button class="button-ok" (click)="closeDialog()">OK</button>
 </div>

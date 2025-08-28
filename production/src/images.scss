@@ -1,5 +1,36 @@
-.image-footer {
+.image-small {
+  width: 22px;
+  height: 22px;
+}
+
+.image-medium {
+  width: 30px;
+  height: 30px;
+}
+
+.image-large-xx {
+  width: 35px;
+  height: 35px;
+}
+
+.ImgFooter {
     background-color: var(--icons-color);
     mask: url(assets/images/ska_footer.svg) no-repeat center / contain;
-    -webkit-mask: url(assets/icons/ska_footer.svg) no-repeat center / contain;
+    -webkit-mask: url(assets/images/ska_footer.svg) no-repeat center / contain;
+}
+
+.TbSailboat {
+  background-color: var(--color-dark-gray-300);
+  mask: url(assets/icons/TbSailboat.svg) no-repeat center / contain;
+  -webkit-mask: url(assets/icons/TbSailboat.svg) no-repeat center / contain;
+
+  width: 35px;
+}
+
+.TbPlane {
+  background-color: var(--color-dark-gray-300);
+  mask: url(assets/icons/TbPlane.svg) no-repeat center / contain;
+  -webkit-mask: url(assets/icons/TbPlane.svg) no-repeat center / contain;
+
+  width: 35px;
 }

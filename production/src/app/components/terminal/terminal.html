@@ -1,16 +1,35 @@
 <div class="terminal-container">
-    <div class="status-bar">
-        {{ status }}
+    <div [ngStyle]="{ 'background-color': productionStatus.color }" class="status-bar">
+        {{ productionStatus.status }}
     </div>
     <div class="terminal-div">
-        <div class="item-infos"></div>
-        <div class="production-infos"></div>
+        <div class="item-infos">
+            <div class="left-align">
+                <div class="title-style center-align">
+                    <label>Item em Produção:</label>
+                </div>
+            </div>
+            <div class="item-content">oi</div>
+        </div>
+        <div class="center-align">
+            <div class="divider"></div>
+        </div>
+        <div class="item-infos">
+            <div class="right-align">
+                <div class="title-style center-align">
+                    <label>Quantidade de itens</label>
+                </div>
+            </div>
+            <div>
+                <div></div>
+            </div>
+        </div>
     </div>
     <div class="action-buttons-div">
-        <button mat-button class="action-buttons stop-button">{{ "Parada" }}</button>
-        <button mat-button class="action-buttons production-button" (click)="openDialog()">{{ "Produção" }}</button>
+        <button mat-button class="action-buttons stop-button">Parada</button>
+        <button mat-button class="action-buttons production-button" (click)="openDialog()">Produção</button>
     </div>
-    <div>
-        <div class="ic-add-circle icon-small"></div>
+    <div class="footer-div">
+        <div class="ImgFooter image-large-xx"></div>
     </div>
 </div>

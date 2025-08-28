@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@import './images.scss';
 
 html, body {
   margin: 0;
@@ -7,7 +8,7 @@ html, body {
   background-color: var(--color-dark-blue-1000);
 }
 
-p {
+h2, p {
   color: var(--color-text);
 }
 
@@ -18,8 +19,14 @@ p {
 
   // System
   --color-dark-blue-1000: #081a2c;
-  --color-dark-blue-900: #123451;
-  --color-dark-blue-800: #11263d;
+  --color-dark-blue-900: #11263d;
+  --color-dark-blue-800: #123451;
+  --color-dark-blue-700: #1f4a6e;
+  --color-dark-gray-300: #97a2b3;
+  --color-dark-gray-200: #b4bdca;
+  --color-light-gray-300: #777f87;
+
+  --color-blue-button: #0f78ae;
 
   // Buttons
   --color-error: #d85f61;
@@ -32,6 +39,11 @@ p {
   --color-green: #32cb78;
   --color-red: #fc7070;
   --color-yellow: #fcba3f;
+}
+
+.my-custom-dialog .mat-mdc-dialog-component-host {
+  display: block !important;
+  background-color: var(--color-dark-blue-1000);
 }
 
 
