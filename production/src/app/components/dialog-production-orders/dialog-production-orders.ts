@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ProductionOrder } from '../../../../../common/class/ProductionOrder';
 
 @Component({
   selector: 'app-dialog-production-orders',
@@ -16,14 +17,16 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 
 export class DialogProductionOrders {
-  productionOrders: any = [{
+  productionOrders: any[] = [{
       label: '123 - Barco de papel',
       value: '123 - Barco de papel',
       key: '123',
       icon: 'TbSailboat',
       image: 'TbSailboat',
       description: 'Quantidade: 5; Cor: Azul.',
-      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png'
+      color: 'Azul',
+      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png',
+      quantity: 5
     },
     {
       label: '456 - Barco de papel',
@@ -32,7 +35,9 @@ export class DialogProductionOrders {
       icon: 'TbSailboat',
       image: 'TbSailboat',
       description: 'Quantidade: 8; Cor: Verde.',
-      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png'
+      color: 'Verde',
+      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png',
+      quantity: 8
     },
     {
       label: '789 - Barco de papel',
@@ -41,7 +46,9 @@ export class DialogProductionOrders {
       icon: 'TbSailboat',
       image: 'TbSailboat',
       description: 'Quantidade: 10; Cor: Vermelho.',
-      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png'
+      color: 'Vermelho',
+      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png',
+      quantity: 10
     },
     {
       label: '1011 - Barco de papel',
@@ -50,7 +57,9 @@ export class DialogProductionOrders {
       icon: 'TbSailboat',
       image: 'TbSailboat',
       description: 'Quantidade: 2; Cor: Amarelo.',
-      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png'
+      color: 'Amarelo',
+      productImage: 'https://media-public.canva.com/p19os/MAFtnBp19os/1/tl.png',
+      quantity: 2
     },
     {
       label: '1012 - Avião de papel',
@@ -59,7 +68,9 @@ export class DialogProductionOrders {
       icon: 'TbPlane',
       image: 'TbPlane',
       description: 'Quantidade: 7; Cor: Azul.',
-      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png'
+      color: 'Azul',
+      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png',
+      quantity: 7
     },
     {
       label: '987 - Avião de papel',
@@ -68,7 +79,9 @@ export class DialogProductionOrders {
       icon: 'TbPlane',
       image: 'TbPlane',
       description: 'Quantidade: 5; Cor: Verde.',
-      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png'
+      color: 'Verde',
+      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png',
+      quantity: 5
     },
     {
       label: '654 - Avião de papel',
@@ -77,7 +90,9 @@ export class DialogProductionOrders {
       icon: 'TbPlane',
       image: 'TbPlane',
       description: 'Quantidade: 6; Cor: Vermelho.',
-      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png'
+      color: 'Vermelho',
+      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png',
+      quantity: 6
     },
     {
       label: '321 - Avião de papel',
@@ -86,7 +101,9 @@ export class DialogProductionOrders {
       icon: 'TbPlane',
       image: 'TbPlane',
       description: 'Quantidade: 7; Cor: Amarelo.',
-      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png'
+      color: 'Amarelo',
+      productImage: 'https://media-public.canva.com/j9FTw/MAE1Scj9FTw/1/tl.png',
+      quantity: 7
     }
    ];
 
@@ -95,10 +112,9 @@ export class DialogProductionOrders {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  selectedOrder: any = {};
+  selectedOrder: ProductionOrder | null = null;
 
   setSelectedOrder(event: any): void {
-    console.log(event)
     this.selectedOrder = event;
   }
   

@@ -1,3 +1,25 @@
+.terminal-container {
+    height: 100dvh;
+    width: 100dvw;
+
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr 0.3fr;
+
+    color: var(--color-text);
+}
+
+.timer {
+    height: 100%;
+    width: 100%;
+
+    color: rgba(255, 255, 255, 0.408);
+    font-size: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 // Status Bar Layout
 .status-bar {
     display: flex;
@@ -5,27 +27,19 @@
     align-items: center;
     padding-left: 1%;
 
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: bold;
+
+    color: var(--color-dark-blue-1000);
 }
 
 // Terminal Layout
-.terminal-container {
-    height: 100dvh;
-    width: 100dvw;
-
-    display: grid;
-    grid-template-rows: 1fr 5fr 1fr 0.3fr;
-}
-
 .terminal-div {
     height: 100%;
     width: 100%;
 
     display: grid;
-    grid-template-columns: 1.01fr 0.01fr 1.3fr;
-
-    color: var(--color-text);
+    grid-template-columns: 1.01fr 0fr 1.4fr;
 }
 
 .item-infos {
@@ -37,27 +51,78 @@
 }
 
 .title-style {
-    background-color: red;
-    width: 90%;
+    width: 95%;
     height: 60%;
 
     border-radius: 5px;
     border: 2px solid;
 
-    font-size: 1.5em;
+    font-size: 1.1rem;
     font-weight: bold;
 
     background-color: var(--color-dark-blue-900);
     border-color: var(--color-dark-blue-800);
 }
 
-// .item-content {
-//     // background-color: transparent;
-// }
+.item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 5%;
+    gap: 1%;
+
+    img {
+        height: 90px;
+    }
+}
+
+.item-description {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    padding-left: 5%;
+    gap: 10%;
+
+    label {
+        font-size: medium;
+    }
+
+    img {
+        height: 110px;
+    }
+}
+
+.item-title-description {
+    font-weight: bold;
+}
+
+.production-item-information {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.production-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.item-color {
+    height: 100%;
+    width: 60%;
+    border-radius: 5px;
+    margin-left: 30%;
+}
 
 .divider {
     border-left: 2px solid var(--color-light-gray-300);
     height: 80%;
+    margin-left: 3px;
 }
 
 // Action Buttons
@@ -71,7 +136,6 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.5em;
-    color: var(--color-text);
 }
 
 .action-buttons {
@@ -90,6 +154,84 @@
 .production-button {
     background-color: var(--color-success-dark);
     border-color: var(--color-success);
+}
+
+.production-infos {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+// Progress Bar
+.progress-infos {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 0.6fr 1.2fr 0.6fr 0.6fr 0.01fr;
+
+    gap: 8px;
+}
+
+.progress-container {
+    width: 100%;
+    height: 60%;
+
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-filled {
+    height: 100%;
+
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    transition: width 0.3s ease;
+}
+
+.produced-filled {
+    background-color: var(--color-success);
+}
+
+.rejected-filled {
+    background-color: var(--color-red);
+}
+
+.progress-remaining {
+    height: 100%;
+
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: bold;
+    
+    padding-right: 10px;
+    background-color: var(--color-dark-blue-800);
+}
+
+.progress-center {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.order-quantity-button {
+    background-color: var(--color-dark-blue-800);
+    border: 2px solid var(--color-dark-blue-700);
+    border-radius: 10px;
+    height: 60%;
+    width: 100%;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 // Footer

@@ -34,3 +34,15 @@
 
   width: 35px;
 }
+
+.TbCircleCheckFilled {
+  background-color: white;
+  mask: url(assets/icons/TbCircleCheckFilled.svg) no-repeat center / contain;
+  -webkit-mask: url(assets/icons/TbCircleCheckFilled.svg) no-repeat center / contain;
+}
+
+.TbCircleXFilled {
+  background-color: white;
+  mask: url(assets/icons/TbCircleXFilled.svg) no-repeat center / contain;
+  -webkit-mask: url(assets/icons/TbCircleXFilled.svg) no-repeat center / contain;
+}

@@ -1,0 +1,22 @@
+<div class="dialog-body">
+    <h2>Informações da produção</h2>
+    
+    <div class="information-content">
+        <div class="info-align">
+            <label class="list-options">Total produzido:</label>
+            <div class="value-style">
+                {{data.totalProduced}}
+            </div>
+        </div>
+        <div class="info-align">
+            <label class="list-options">Total rejeitado:</label>
+            <div class="value-style">
+                {{data.totalRejected}}
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+      <button mat-button class="button-ok" (click)="closeDialog()">OK</button>
+    </div>
+</div>

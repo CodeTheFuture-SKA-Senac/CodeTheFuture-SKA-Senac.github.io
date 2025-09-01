@@ -13,3 +13,11 @@ export enum ProductionStatusColor_e {
     WaitingProduction = 'var(--color-dark-gray-200)',
     Stop = 'var(--color-error)'
 }
+
+export enum OrderColors_e {
+    '' = '',
+    'Azul' = 'var(--color-blue)',
+    'Verde' = 'var(--color-green)',
+    'Vermelho' = 'var(--color-red)',
+    'Amarelo' = 'var(--color-yellow)',
+}

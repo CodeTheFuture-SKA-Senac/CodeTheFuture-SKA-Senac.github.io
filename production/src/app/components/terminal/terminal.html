@@ -1,35 +1,122 @@
 <div class="terminal-container">
-    <div [ngStyle]="{ 'background-color': productionStatus.color }" class="status-bar">
-        {{ productionStatus.status }}
+    <div [ngStyle]="{ 'background-color': productionStatus.color }" class="status-bar" (click)="fullscreen()">
+        <div >{{ productionStatus.status }}</div>
     </div>
-    <div class="terminal-div">
-        <div class="item-infos">
-            <div class="left-align">
+
+    <div *ngIf="timerFormatted" class="timer">
+        <h1>{{ timerFormatted }}</h1>
+    </div>
+
+    <div *ngIf="!timerFormatted" class="terminal-div">
+        <div [ngStyle]="{'opacity': !productionOrder.key || (productionStatus.color === ProductionStatusColor_e.Stop) ? '0.5' : '1'}"  class="item-infos">
+            <div class="center-align">
                 <div class="title-style center-align">
-                    <label>Item em Produção:</label>
+                    <label>Item em Produção: {{productionOrder.value}}</label>
                 </div>
             </div>
-            <div class="item-content">oi</div>
+            <div class="item-content">
+                <img [src]="productionOrder.productImage"/>
+
+                <div class="item-description">
+                    <div>
+                        <label class="item-title-description">Ordem de produção: </label>
+                        <label>{{productionOrder.key}} </label>
+                    </div>
+                    <div class="production-item-information">
+                        <div class="production-item">
+                            <label class="item-title-description">Cor do produto:</label>
+                            <label> {{productionOrder.color}} </label>
+                        </div>
+                        <div class="item-color" [style.background-color]="OrderColors_e[productionOrder.color]"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="center-align">
+        <div [ngStyle]="{'opacity': !productionOrder.key || (productionStatus.color === ProductionStatusColor_e.Stop)  ? '0.5' : '1'}" class="center-align">
             <div class="divider"></div>
         </div>
-        <div class="item-infos">
-            <div class="right-align">
+        <div [ngStyle]="{'opacity': !productionOrder.key || (productionStatus.color === ProductionStatusColor_e.Stop)  ? '0.5' : '1'}" class="item-infos">
+            <div class="center-align">
                 <div class="title-style center-align">
                     <label>Quantidade de itens</label>
                 </div>
             </div>
-            <div>
-                <div></div>
+            <div class="production-infos">
+                <div class="progress-infos">
+                    <div class="center-align">
+                        Produzido
+                    </div>
+                    <div class="center-align">
+                        <div class="progress-container center-align">
+                            <div class="progress-filled produced-filled" [ngStyle]="{ 
+                                                                                     'width': producedPercentage + '%',
+                                                                                     'padding-left': produced ? '10px' : '0px'
+                                                                                    }">
+                                {{ produced }}
+                            </div>
+    
+                            <div class="progress-remaining" [ngStyle]="{ 
+                                                                        'width': (productionOrder.quantity - produced) + '%', 
+                                                                        'background-color': ((productionOrder.quantity - produced) || !productionOrder.key) ? 'var(--color-dark-blue-800)' : 'var(--color-green)'
+                                                                        }">
+                                {{ productionOrder.quantity - produced }}
+                            </div>
+    
+                            <div class="progress-center">
+                                <div *ngIf="producedPercentage === 100" class="TbCircleCheckFilled image-medium"></div>
+                                <span *ngIf="producedPercentage !== 100">{{ producedPercentage }}%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button mat-button class="order-quantity-button" [disabled]="(productionStatus.status === ProductionStatus_e.WaitingProduction) || (productionStatus.color === ProductionStatusColor_e.Stop)" (click)="changePercentageValue(false)">-</button>
+                    </div>
+                    <div class="center-align">
+                        <button mat-button class="order-quantity-button" [disabled]="(productionStatus.status === ProductionStatus_e.WaitingProduction) || (productionStatus.color === ProductionStatusColor_e.Stop)" (click)="changePercentageValue()">+</button>
+                    </div>
+                </div>
+        
+                <div class="progress-infos">
+                    <div class=" center-align">
+                        Rejeitado
+                    </div>
+                    <div class="center-align">
+                        <div class="progress-container center-align">
+                            <div class="progress-filled rejected-filled" [ngStyle]="{ 
+                                                                                     'width': rejectedPercentage + '%',
+                                                                                     'padding-left': rejected ? '10px' : '0px',
+                                                                                    }">
+                                {{ rejected }}
+                            </div>
+    
+                            <div class="progress-remaining"  [ngStyle]="{
+                                                                         'width': (productionOrder.quantity - rejected) + '%', 
+                                                                         'background-color': ((productionOrder.quantity - rejected) || !productionOrder.key) ? 'var(--color-dark-blue-800)' : 'var(--color-red)'
+                                                                        }">
+                                {{ productionOrder.quantity - rejected }}
+                            </div>
+    
+                            <div class="progress-center">
+                                <div *ngIf="rejectedPercentage === 100" class="TbCircleXFilled image-medium"></div>
+                                <span *ngIf="rejectedPercentage !== 100">{{ rejectedPercentage }}%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <button mat-button class="order-quantity-button" [disabled]="(productionStatus.status === ProductionStatus_e.WaitingProduction) || (productionStatus.color === ProductionStatusColor_e.Stop)" (click)="changePercentageValue(false, false)">-</button>
+                    </div>
+                    <div class="center-align">
+                        <button mat-button class="order-quantity-button" [disabled]="(productionStatus.status === ProductionStatus_e.WaitingProduction) || (productionStatus.color === ProductionStatusColor_e.Stop)" (click)="changePercentageValue(true, false)">+</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="action-buttons-div">
-        <button mat-button class="action-buttons stop-button">Parada</button>
-        <button mat-button class="action-buttons production-button" (click)="openDialog()">Produção</button>
+        <button mat-button class="action-buttons stop-button" [disabled]="productionStatus.status === ProductionStatus_e.WaitingProduction" [ngStyle]="{'opacity': !productionOrder.key ? '0.5' : '1'}" (click)="openStopDialog()">Parada</button>
+        <button mat-button class="action-buttons production-button" [disabled]="timerFormatted" [ngStyle]="{'opacity': timerFormatted ? '0.5' : '1'}" (click)="openProductionDialog()">Produção</button>
     </div>
     <div class="footer-div">
-        <div class="ImgFooter image-large-xx"></div>
+        <div class="ImgFooter image-large-xx" (click)="openInformationDialog()"></div>
     </div>
 </div>
