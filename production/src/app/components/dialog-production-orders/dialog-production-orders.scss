@@ -62,9 +62,9 @@ h2 {
     padding: 10px 20px;
 }
 
-.button-ok {
+button {
     width: 100%;
     border-radius: 5px;
-    color: var(--color-text);
+    color: var(--color-text) !important;
     background-color: var(--color-blue-button);
 }

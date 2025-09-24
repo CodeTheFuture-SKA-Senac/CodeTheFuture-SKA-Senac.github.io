@@ -2,7 +2,7 @@
 
 <div class="list-options">
   <div *ngFor="let order of productionOrders" class="options" [class.selected]="order.key === selectedOrder?.key" (click)="setSelectedOrder(order)">
-    <div [class]="order.icon"></div>
+    <div [class]="order.icon"></div> <!-- Icon -->
     <div class="options-description">
       <div class="order-label">{{ order.label }}</div>
       <div class="order-description">{{ order.description }}</div>
@@ -11,5 +11,5 @@
 </div>
 
 <div class="footer">
-  <button mat-button class="button-ok" (click)="closeDialog()">OK</button>
+  <button mat-button (click)="closeDialog()">OK</button>
 </div>

@@ -13,7 +13,9 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "resolveJsonModule": true, // Important for JSON files
+    "esModuleInterop": true // Important for JSON files
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
