@@ -2,10 +2,10 @@
 
 <div class="list-options">
   <div *ngFor="let order of stopTypes" class="options" [class.selected]="order.key === selectedStopType?.key" (click)="setSelectedOrder(order)">
-    <div [class]="order.icon"></div>
+    <i [class]="order.icon"></i>
     <div class="options-description">
-      <div class="order-label">{{ order.label }}</div>
-      <div class="order-description">{{ order.description }}</div>
+      <span class="order-label">{{ order.label }}</span>
+      <span class="order-description">{{ order.description }}</span>
     </div>
   </div>
 </div>

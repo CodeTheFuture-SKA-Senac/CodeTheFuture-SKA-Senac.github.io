@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import './images.scss';
+@import './images.scss'; // Import necessário para utilizar imagens
 
 html, body {
   margin: 0;
@@ -42,7 +42,7 @@ h2, p {
 }
 
 .custom-dialog .mat-mdc-dialog-component-host {
-  display: block !important;
+  display: block !important; 
   background-color: var(--color-dark-blue-1000);
 }
 
