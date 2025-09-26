@@ -57,56 +57,54 @@ export class Terminal {
       screenfull.default.toggle();
   }
 
-  setProductionOrder(newProductionOrder: ProductionOrder): void {
-     this.productionStatus = new ProductionStatus(ProductionStatus_e.InProduction, ProductionStatusColor_e.InProduction);
+  async setProductionOrder(): Promise<void> {
+    const dialogData: Object = {
+      dialogTitle: 'Selecionar ordem de produção',
+      optionsList: this.productionOrders
+    }
 
-      if (newProductionOrder.key === this.productionOrder.key)
-        return;
+    const newProductionOrder: ProductionOrder = await this.openSelectDialog(dialogData);
+    if (!newProductionOrder) return;
 
-      // this.resetPercentageValues();
-      this.productionOrder = newProductionOrder;
-      this.disabledStyle = {'opacity': !this.productionOrder.key || (this.productionStatus.color === ProductionStatusColor_e.Stop)  ? '0.5' : '1'}
+    this.productionControl.forEach(prodControl => prodControl.resetValues());
+    this.productionStatus = new ProductionStatus(ProductionStatus_e.InProduction, ProductionStatusColor_e.InProduction);
+
+    if (newProductionOrder.key === this.productionOrder.key)
+      return;
+
+    this.productionOrder = newProductionOrder;
+    this.disabledStyle = {'opacity': !this.productionOrder.key || (this.productionStatus.color === ProductionStatusColor_e.Stop)  ? '0.5' : '1'}
   }
 
-  // Open dialogs
-  openProductionDialog(): void {
-    const dialogRef: MatDialogRef<DialogSelect, any> = this.dialog.open(DialogSelect, {
-        width: '950px',
-        panelClass: 'custom-dialog',
-        data: {
-          dialogTitle: 'Selecionar ordem de produção',
-          optionsList: this.productionOrders
-        }
-    });
+  async setStopType(): Promise<void> {
+    const dialogData: Object = {
+      dialogTitle: 'Selecionar motivo de parada',
+      optionsList: this.stopTypes
+    }
 
-    dialogRef.afterClosed().subscribe((newProductionOrder: ProductionOrder) => {
-      if (!newProductionOrder) return;
+    const stopType: StopProductionType = await this.openSelectDialog(dialogData);
+    if (!stopType) return;
 
-      this.productionControl.forEach(prodControl => prodControl.resetValues());
-      this.setProductionOrder(newProductionOrder);
-    });
+    this.productionStatus = {
+      color: ProductionStatusColor_e.Stop,
+      status: ProductionStatus_e[stopType.value as keyof typeof ProductionStatus_e],
+      key: stopType.key,
+      time: stopType.time,
+    }
   }
 
-  openStopDialog(): void {
+  // Dialog
+  openSelectDialog(dialogData: Object): any {
     const dialogRef: MatDialogRef<DialogSelect, any> = this.dialog.open(DialogSelect, {
-        width: '950px',
-        panelClass: 'custom-dialog',
-        data: {
-          dialogTitle: 'Selecionar motivo de parada',
-          optionsList: this.stopTypes
-        }
+      width: '950px',
+      panelClass: 'custom-dialog',
+      data: dialogData
     });
 
-    dialogRef.afterClosed().subscribe((stopType: StopProductionType) => {
-      if (!stopType) return;
-
-      this.productionStatus = {
-        color: ProductionStatusColor_e.Stop,
-        status: ProductionStatus_e[stopType.value as keyof typeof ProductionStatus_e],
-        key: stopType.key,
-        time: stopType.time,
-      }
+    return new Promise((resolve) => {
+      dialogRef.afterClosed().subscribe((result) => {
+        resolve(result);
+      });
     });
   }
 }
-
