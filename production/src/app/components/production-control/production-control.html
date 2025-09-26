@@ -2,11 +2,11 @@
     <label>{{title}}</label>
 
     <div class="progress-container">
-        <div class="progress-filled" [style.width]="valuePercentage + '%'" [style.background-color]="getChartColor()" [ngStyle]="{'padding-left': value ? '10px' : '0px', }">
+        <div class="progress-filled" [style.width]="(valuePercentage <= 0 ? 10 : valuePercentage) + '%'" [style.background-color]="getChartColor()">
             {{ value }}
         </div>
 
-        <div class="progress-remaining" [style.width]="(productionOrderQuantity - value) + '%'" [style.background-color]="getChartColor()">
+        <div class="progress-remaining" [style.width]="(productionOrderQuantity - value) + '%'" [style.background-color]="getChartColor(true)">
             {{ productionOrderQuantity - value }}
         </div>
 

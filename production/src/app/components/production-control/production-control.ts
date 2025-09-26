@@ -30,8 +30,10 @@ export class ProductionControl {
 
   constructor() {}
 
-  getChartColor(): string {
-    if ((this.productionOrderQuantity - this.value) || !this.productionOrderKey)
+  getChartColor(isRemaining: boolean = false): string {
+    const hasRemaining: boolean = ((this.productionOrderQuantity - this.value >= 0) && (this.productionOrderQuantity - this.value) < this.productionOrderQuantity);
+    
+    if (this.value === 0 || (isRemaining && hasRemaining) || !this.productionOrderKey)
       return 'var(--color-dark-blue-800)';
 
     return (this.title === 'Produzido') ?  'var(--color-green)' : 'var(--color-red)';
@@ -49,7 +51,7 @@ export class ProductionControl {
       return (this.value === 0) ? this.value : --this.value;
   }
 
-  resetPercentageValues(): void {
+  resetValues(): void {
     this.value = 0;
     this.valuePercentage = 0;
   }

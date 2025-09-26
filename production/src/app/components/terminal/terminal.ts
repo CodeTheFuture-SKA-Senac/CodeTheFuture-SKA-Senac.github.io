@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import * as screenfull from 'screenfull';
 
 // Common imports
@@ -7,18 +7,22 @@ import { NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 // Dialog
-import { DialogProductionOrders } from '../dialog-production-orders/dialog-production-orders';
-import { DialogStopProduction } from '../dialog-stop-production/dialog-stop-production';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { DialogSelect } from '../dialog-select/dialog-select';
 
 // Class and Enum
 import { ItemData } from '../../../../../common/class/ItemData';
 import { ProductionStatus } from '../../../../../common/class/ProductionStatus';
 import { ProductionOrder } from '../../../../../common/class/ProductionOrder';
+import { StopProductionType } from '../../../../../common/class/StopProductionType';
 import { OrderColors_e, ProductionStatus_e, ProductionStatusColor_e } from '../../../../../common/enum/Enum';
 
 // Components
 import { ProductionControl } from "../production-control/production-control";
+
+// JSON
+import productionOrders from '../../../assets/files/production-orders.json';
+import stopTypes from '../../../assets/files/production-stop-types.json';
 
 @Component({
   selector: 'app-terminal',
@@ -29,6 +33,11 @@ import { ProductionControl } from "../production-control/production-control";
 })
 
 export class Terminal {
+  @ViewChildren(ProductionControl) productionControl!: QueryList<ProductionControl>;
+
+  productionOrders: ProductionOrder[] = productionOrders as ProductionOrder[];
+  stopTypes: StopProductionType[] = stopTypes;
+
   itemData: ItemData = new ItemData();
   productionStatus: ProductionStatus = new ProductionStatus();
   productionOrder: ProductionOrder = new ProductionOrder();
@@ -61,30 +70,43 @@ export class Terminal {
 
   // Open dialogs
   openProductionDialog(): void {
-    const dialogRef: MatDialogRef<DialogProductionOrders, any> = this.dialog.open(DialogProductionOrders, {
+    const dialogRef: MatDialogRef<DialogSelect, any> = this.dialog.open(DialogSelect, {
         width: '950px',
-        panelClass: 'custom-dialog'
+        panelClass: 'custom-dialog',
+        data: {
+          dialogTitle: 'Selecionar ordem de produção',
+          optionsList: this.productionOrders
+        }
     });
 
     dialogRef.afterClosed().subscribe((newProductionOrder: ProductionOrder) => {
       if (!newProductionOrder) return;
 
+      this.productionControl.forEach(prodControl => prodControl.resetValues());
       this.setProductionOrder(newProductionOrder);
     });
   }
 
   openStopDialog(): void {
-    const dialogRef = this.dialog.open(DialogStopProduction, {
+    const dialogRef: MatDialogRef<DialogSelect, any> = this.dialog.open(DialogSelect, {
         width: '950px',
-        panelClass: 'custom-dialog'
+        panelClass: 'custom-dialog',
+        data: {
+          dialogTitle: 'Selecionar motivo de parada',
+          optionsList: this.stopTypes
+        }
     });
 
-    dialogRef.afterClosed().subscribe((result: ProductionStatus) => {
-      if (!result) return;
+    dialogRef.afterClosed().subscribe((stopType: StopProductionType) => {
+      if (!stopType) return;
 
-      this.productionStatus = result;
+      this.productionStatus = {
+        color: ProductionStatusColor_e.Stop,
+        status: ProductionStatus_e[stopType.value as keyof typeof ProductionStatus_e],
+        key: stopType.key,
+        time: stopType.time,
+      }
     });
   }
 }
-
 

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogStopProduction } from './dialog-stop-production';
+import { DialogSelect } from './dialog-select';
 
-describe('DialogStopProduction', () => {
-  let component: DialogStopProduction;
-  let fixture: ComponentFixture<DialogStopProduction>;
+describe('DialogSelect', () => {
+  let component: DialogSelect;
+  let fixture: ComponentFixture<DialogSelect>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogStopProduction]
+      imports: [DialogSelect]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DialogStopProduction);
+    fixture = TestBed.createComponent(DialogSelect);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

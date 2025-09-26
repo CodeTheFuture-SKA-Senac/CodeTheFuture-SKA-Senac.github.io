@@ -27,6 +27,7 @@
 
 .progress-filled {
     height: 100%;
+    padding-left: 5%;
     font-weight: bold;
     
     display: flex;
@@ -53,7 +54,7 @@
 
     height: 100%;
     font-weight: bold;
-    padding-right: 10px;
+    padding-right: 5%;
     background-color: var(--color-dark-blue-800);
 }
 
