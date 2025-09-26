@@ -14,10 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
 })
 
 export class DialogSelect {
-
   dialogTitle: string = '';
-
   optionsList: any = null;
+
   selectedOption: any = null;
 
   constructor(public dialogRef: MatDialogRef<DialogSelect>, @Inject(MAT_DIALOG_DATA) public data: any) {

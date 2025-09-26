@@ -22,7 +22,7 @@ import { ProductionControl } from "../production-control/production-control";
 
 // JSON
 import productionOrders from '../../../assets/files/production-orders.json';
-import stopTypes from '../../../assets/files/production-stop-types.json';
+import stopTypes from '../../../assets/files/stop-types.json';
 
 @Component({
   selector: 'app-terminal',

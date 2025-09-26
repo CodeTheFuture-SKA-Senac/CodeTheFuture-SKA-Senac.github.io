@@ -1,8 +1,10 @@
+// Title
 h2 {
     padding-top: 20px;
     text-align: center;
 }
 
+// List
 .list-options {
     display: flex;
     flex-direction: column;
@@ -35,10 +37,6 @@ h2 {
   background-color: var(--color-dark-blue-1000);
 }
 
-.options img {
-    height: 5vh;
-}
-
 .options-description {
     width: 100%;
     align-items: center;
@@ -48,16 +46,16 @@ h2 {
     gap: 0.5vh;
 }
 
-.order-label {
+.option-label {
     font-size: x-large;
 }
 
-.order-description {
+.option-description {
     font-size: large;
     color: var(--color-dark-gray-300);
 }
 
-// Footer Buttons
+// Footer
 .footer  {
     padding: 10px 20px;
 }

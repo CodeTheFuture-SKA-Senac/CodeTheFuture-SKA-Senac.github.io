@@ -1,27 +1,25 @@
 <div class="terminal-container">
     <!-- Status Bar -->
-    <div [style.background]="productionStatus.color" class="status-bar" (click)="fullscreen()">
+    <div class="status-bar" [style.background]="productionStatus.color" (click)="fullscreen()">
         <span>{{ productionStatus.status }}</span>
     </div>
 
     <div class="terminal-div">
-        <div [ngStyle]="disabledStyle"  class="item-infos">
-            <div class="center-align">
-                <div class="title-style"> Item em Produção: {{productionOrder.value}} </div>
-            </div>
+        <div class="item-infos" [ngStyle]="disabledStyle">
+            <span class="title-style"> Item em Produção: {{productionOrder.value}} </span>
 
             <div class="item-content">
                 <img [src]="productionOrder.productImage"/>
 
                 <div class="item-description">
                     <div>
-                        <label class="item-title-description">Ordem de produção: </label>
-                        <label>{{productionOrder.key}} </label>
+                        <span class="item-title-description">Ordem de produção: </span>
+                        <span>{{productionOrder.key}} </span>
                     </div>
                     <div class="production-item-information">
                         <div class="production-item">
-                            <label class="item-title-description">Cor do produto:</label>
-                            <label> {{productionOrder.color}} </label>
+                            <span class="item-title-description">Cor do produto:</span>
+                            <span> {{productionOrder.color}} </span>
                         </div>
 
                         <div class="item-color" [style.background-color]="OrderColors_e[productionOrder.color]"></div>
@@ -30,14 +28,10 @@
             </div>
         </div>
 
-        <div [ngStyle]="disabledStyle" class="center-align">
-            <div class="divider"></div>
-        </div>
+        <div class="divider"></div>
 
-        <div [ngStyle]="disabledStyle" class="item-infos">
-            <div class="center-align">
-                <div class="title-style">Quantidade de itens </div>
-            </div>
+        <div class="item-infos" [ngStyle]="disabledStyle">
+            <span class="title-style">Quantidade de itens</span>
 
             <div class="production-infos">
                 <app-production-control

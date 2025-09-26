@@ -30,10 +30,13 @@ export class ProductionControl {
 
   constructor() {}
 
-  getChartColor(isRemaining: boolean = false): string {
-    const hasRemaining: boolean = ((this.productionOrderQuantity - this.value >= 0) && (this.productionOrderQuantity - this.value) < this.productionOrderQuantity);
-    
-    if (this.value === 0 || (isRemaining && hasRemaining) || !this.productionOrderKey)
+  resetValues(): void {
+    this.value = 0;
+    this.valuePercentage = 0;
+  }
+
+  getChartColor(isRemainingArea: boolean = false): string {
+    if (this.value === 0 || !this.productionOrderKey || (isRemainingArea && this.checkIfHasRemaining()))
       return 'var(--color-dark-blue-800)';
 
     return (this.title === 'Produzido') ?  'var(--color-green)' : 'var(--color-red)';
@@ -51,8 +54,8 @@ export class ProductionControl {
       return (this.value === 0) ? this.value : --this.value;
   }
 
-  resetValues(): void {
-    this.value = 0;
-    this.valuePercentage = 0;
+  checkIfHasRemaining(): boolean {
+    const remaining: number = this.productionOrderQuantity - this.value;
+    return (remaining >= 0 && remaining < this.productionOrderQuantity);
   }
 }

@@ -4,8 +4,6 @@
 
     display: grid;
     grid-template-rows: 1fr 5fr 1fr 0.3fr;
-
-    color: var(--color-text);
 }
 
 // Status Bar Layout
@@ -22,11 +20,10 @@
 
 // Terminal Layout
 .terminal-div {
-    height: 100%;
-    width: 100%;
-
     display: grid;
     grid-template-columns: 1.01fr 0fr 1.4fr;
+
+    align-items: center;
 }
 
 .item-infos {
@@ -35,6 +32,8 @@
 
     display: grid;
     grid-template-rows: 1fr 4fr;
+
+    place-items: center; // Alinha os itens na vertical e horizontal - grid
 }
 
 .title-style {
@@ -56,12 +55,15 @@
 }
 
 .item-content {
+    width: 95%;
+    height: 100%;
+
     display: flex;
     flex-direction: row;
     align-items: center;
 
     padding: 5%;
-    gap: 1%;
+    gap: 5%;
 
     img {
         height: 120px;
@@ -69,22 +71,14 @@
 }
 
 .item-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
 
-    padding-left: 5%;
-    gap: 10%;
-
-    label {
-        font-size: medium;
-    }
-
-    img {
-        height: 110px;
-    }
+    gap: 5%
 }
 
 .item-title-description {
@@ -107,13 +101,21 @@
     height: 2vw;
     width: 2vw;
     border-radius: 5px;
-    margin-left: 30%;
 }
 
+// Divider
 .divider {
     border-left: 2px solid var(--color-light-gray-300);
     height: 80%;
-    margin-left: 3px;
+}
+
+// Chart Region
+.production-infos {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
 
 // Action Buttons
@@ -146,44 +148,10 @@
     border-color: var(--color-success) !important;
 }
 
-.production-infos {
-    height: 100%;
-    width: 100%;
-
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-}
-
-
-
 // Footer
 .footer-div {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--color-dark-blue-700);
-}
-
-// Alignment
-.center-align {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.left-align {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    padding-left: 1%;
-}
-
-.right-align {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: end;
-    padding-right: 1%;
 }
